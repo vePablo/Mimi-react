@@ -1,0 +1,13 @@
+Fonts used in this design:
+
+Font: Intro Rust
+Author: Fontfabric
+Url: http://www.fontsquirrel.com/fonts/intro-rust
+
+Font: Mathlete
+Author: Mattox
+Url: http://www.fontsquirrel.com/fonts/mathlete
+
+Font: Norwester
+Author: Jamie Wilson
+Url: http://www.fontsquirrel.com/fonts/norwester
