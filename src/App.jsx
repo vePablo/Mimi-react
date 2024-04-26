@@ -1,4 +1,4 @@
-import "./App.css";
+
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import HomeContainer from "./components/home/HomeContainer";
 import ItemDetailContainer from "./components/products/productDetail/ItemDetailContainer";

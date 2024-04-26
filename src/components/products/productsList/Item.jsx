@@ -31,7 +31,7 @@ const Item = ({ producto }) => {
       </svg>{producto.price}
       </div>
       <Link to={`/item/${producto.id}`} >
-        <button className="boton boton-info mt-2">
+        <button className="mt-2">
           Más detalles
         </button>
       </Link>

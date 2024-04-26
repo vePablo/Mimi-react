@@ -23,7 +23,7 @@
     padding: 1em;
   }
   .carousel-control-prev,
-.carousel-control-next {
+  .carousel-control-next {
   background-color: #e1e1e1;
   width: 5vh;
   height: 5vh;

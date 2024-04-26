@@ -7,9 +7,11 @@ const CarritoWidget = () => {
     const { cantidadEnCarrito } = useContext(CartContext);
 
     return (
+        <>        
         <Link to="/carrito" className="nav-link">
             Carrito <Badge bg="secondary">{cantidadEnCarrito()}</Badge>
         </Link>
+        </>
     );
 };
 

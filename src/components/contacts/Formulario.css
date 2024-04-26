@@ -1,0 +1,28 @@
+.Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* Color de fondo */
+  }
+  
+  .Formulario {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo con efecto glass */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra */
+  }
+  
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centrar la imagen */
+  }
+  
+  @media (min-width: 768px) {
+    .Formulario {
+      padding: 40px;
+    }
+  }
+  

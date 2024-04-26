@@ -38,7 +38,7 @@ const ItemDetail = ({ item }) => {
             <span className="quantity">{cantidad}</span>
             <Button variant="light" onClick={handleSum}>+</Button>
           </div>
-          <Button variant="primary" onClick={() => agregarAlCarrito(item, cantidad)} className="boton boton-info">
+          <Button variant="primary" onClick={() => agregarAlCarrito(item, cantidad)}>
             Agregar al carrito
           </Button>
         </Col>

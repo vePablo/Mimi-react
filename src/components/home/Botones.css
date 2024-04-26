@@ -1,6 +1,4 @@
-
-  
-  .boton {
+  .cta {
     font: inherit;
     padding: 0.75em 3em;
     background: hsl(185, 53%, 15%);
@@ -15,12 +13,12 @@
     overflow: hidden;
   }
   
-  .boton:hover,
-  .boton:focus-visible {
+  .cta:hover,
+  .cta:focus-visible {
     background: hsl(185, 53%, 34%);
   }
   
-  .boton-info > span {
+  .cta-info > span {
     position: absolute;
     z-index: -1;
     width: 33.333%;
