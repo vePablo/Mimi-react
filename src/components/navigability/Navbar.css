@@ -2,3 +2,6 @@
     background-color: rgba(255, 255, 255, 0.261); 
     backdrop-filter: blur(20px); 
 }
+.Nav-login {
+    color: var(--bs-blue);
+}

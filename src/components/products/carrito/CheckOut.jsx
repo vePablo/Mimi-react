@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { CartContext } from "../../../Context/CartContext";
 import { useForm } from "react-hook-form";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../../firebase/config";
+import { db, auth } from "../../../firebase/config"; // Importa el objeto auth de Firebase
 import { Link } from "react-router-dom";
 
 const CheckOut = () => {
@@ -10,60 +10,59 @@ const CheckOut = () => {
 
   const [idDelPedido, setIdDelPedido] = useState("");
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const comprar = (data) => {
+  const comprar = async (data) => {
     const pedido = {
-      cliente: data,
+      cliente: {
+        nombre: data.nombre,
+        apellido: data.apellido,
+        telefono: data.telefono,
+        email: auth.currentUser.email // Usa el correo electrónico del usuario autenticado
+      },
       productos: carrito,
       total: precioTotal(),
+      fecha: new Date().toISOString(),
+      estado: "generada"
     };
 
-    const ref = collection(db, "checkout");
-
-    addDoc(ref, pedido).then((doc) => {
-      setIdDelPedido(doc.id);
+    try {
+      const docRef = await addDoc(collection(db, "orders"), pedido);
+      setIdDelPedido(docRef.id);
       vaciarCarrito();
-    });
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
 
   if(idDelPedido) {
     return (
       <>
-      <Link to="../">Volver 🔙</Link>
+      <Link to="../">Volver al inicio</Link>
       <article>
         <div className="Checkout-container">
-          <h1>Gracias por tu compra</h1>
-          <p>Tu id del pedido es: <span className="Chekout-id">{idDelPedido}</span></p>
+          <h1>¡Gracias por tu compra!</h1>
+          <p>Tu ID de pedido es: <span className="Chekout-id">{idDelPedido}</span></p>
         </div>
         <Link to="/productos">Seguir comprando</Link>
       </article>
       </>
     )
   }
+
   return (
     <>
       <div className="Container">
         <form className="Formulario" onSubmit={handleSubmit(comprar)}>
           <h1>Finalizar Compra</h1>
-          <input
-            type="text"
-            placeholder="Ingresa tu nombre"
-            {...register("nombre")}
-          />
-          <input
-            type="email"
-            placeholder="Ingresa tu e-mail"
-            {...register("email")}
-          />
-          <input
-            type="tel"
-            placeholder="Ingresa tu teléfono"
-            {...register("telefono")}
-          />
-
-          <button className="Btn-enviar" type="submit">
-            Comprar
+          <input type="text" placeholder="Nombre" {...register("nombre", { required: true })} />
+          {errors.nombre && <span>Este campo es requerido</span>}
+          <input type="text" placeholder="Apellido" {...register("apellido", { required: true })} />
+          {errors.apellido && <span>Este campo es requerido</span>}
+          <input type="tel" placeholder="Teléfono" {...register("telefono", { required: true })} />
+          {errors.telefono && <span>Este campo es requerido</span>}
+          <button className="Btn-enviar" type="submit" disabled={carrito.length === 0}>
+            Realizar Compra
           </button>
         </form>
       </div>

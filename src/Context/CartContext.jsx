@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 
@@ -10,6 +11,8 @@ export const CartProvider = ({children}) => {
 
     const [carrito, setCarrito] = useState(carritoInicial);
 
+    const [vengoDelCarrito, setVengoDelCarrito] = useState(false); 
+    
     const agregarAlCarrito = (item, cantidad) => {
         const itemAgregado = { ...item, cantidad };
 
@@ -49,12 +52,11 @@ export const CartProvider = ({children}) => {
             agregarAlCarrito,
             cantidadEnCarrito,
             precioTotal,
-            vaciarCarrito
+            vaciarCarrito,
+            vengoDelCarrito,
+            setVengoDelCarrito
         } }>
             {children}
         </CartContext.Provider>
     )
-
-
-
 }

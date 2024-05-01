@@ -66,7 +66,7 @@ const Formulary = () => {
           </Form>
         </Col>
         <Col>
-          <img src={ImgLogingBg} alt="Imagen de fondo" className="img-fluid" />
+          <img src={ImgLogingBg} alt="Imagen de fondo" className="img-fluid bg" />
         </Col>
       </Row>
     </div>

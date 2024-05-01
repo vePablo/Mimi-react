@@ -1,12 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import CarritoWidget from '../products/carrito/CarritoWidget';
+//Firebase
+import { auth } from '../../firebase/config';
+import { signOut } from 'firebase/auth';
+//Toastify
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
+
 
 import './Navbar.css'; 
-import CarritoWidget from '../products/carrito/CarritoWidget';
 
 const BoostNav = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [usuario, setUsuario] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,8 +32,31 @@ const BoostNav = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(usuarioFirebase => {
+      setUsuario(usuarioFirebase);
+    });
+
+    return () => unsubscribe();
+  }, []);
+  useEffect(() => {
+    if (usuario) {
+      toast.success("¡Inicio de sesión exitoso!");
+    }
+  }, [usuario]);
+
+  const cerrarSesion = async () => {
+    try {
+      await signOut(auth);
+      toast.success('Sesión cerrada exitosamente');
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+      toast.error('Hubo un error al cerrar sesión');
+    }
+  };
+  
   return (
-    <Navbar bg={scrolled ? 'light-scrolled' : 'light'} expand="lg" className={scrolled ? 'scrolled' : ''}fixed="top">
+    <Navbar bg={scrolled ? 'light-scrolled' : 'light'} expand="lg" className={scrolled ? 'scrolled' : ''} fixed="top">
       <Container>
         <Navbar.Brand as={Link} to="/">Soy Mimi</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -39,12 +70,19 @@ const BoostNav = () => {
               <NavDropdown.Item as={Link} to="/productos/remeras">Remeras</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link as={Link} to="/contacts">Nosotros</Nav.Link>
-            
-             <CarritoWidget />
-            
+            <CarritoWidget />
+            {usuario ? (
+              <>
+                <Nav.Link>{usuario.email}</Nav.Link>
+                <Button variant="secondary" onClick={cerrarSesion}>Cerrar sesión</Button>
+              </>
+            ) : (
+              <Nav.Link as={Link} to="/login" className='Nav-login'>Login</Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
+      <ToastContainer />
     </Navbar>
   )
 }
