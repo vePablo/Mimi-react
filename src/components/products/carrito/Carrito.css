@@ -18,5 +18,7 @@
     margin: 16px 16px;
     align-items: baseline;
   }
-
-  
+  .allvh{
+    height: 50vh;
+    margin-top: 10%;
+  }

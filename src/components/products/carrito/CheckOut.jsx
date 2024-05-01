@@ -38,14 +38,16 @@ const CheckOut = () => {
   if(idDelPedido) {
     return (
       <>
+      <div className="container allvh">
       <Link to="../">Volver al inicio</Link>
       <article>
-        <div className="Checkout-container">
+        <div className="Checkout-container mt-5 mb-5">
           <h1>¡Gracias por tu compra!</h1>
           <p>Tu ID de pedido es: <span className="Chekout-id">{idDelPedido}</span></p>
         </div>
         <Link to="/productos">Seguir comprando</Link>
       </article>
+      </div>
       </>
     )
   }
