@@ -18,7 +18,7 @@ const CheckOut = () => {
         nombre: data.nombre,
         apellido: data.apellido,
         telefono: data.telefono,
-        email: auth.currentUser.email // Usa el correo electrónico del usuario autenticado
+        email: auth.currentUser.email 
       },
       productos: carrito,
       total: precioTotal(),
