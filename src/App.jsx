@@ -10,6 +10,7 @@ import CheckOut from "./components/products/carrito/CheckOut";
 import Login from "./components/login/Login";
 import BoostNav from "./components/navigability/BoostNav";
 import Footer from "./components/footer/Footer";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
