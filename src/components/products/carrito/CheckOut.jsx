@@ -45,7 +45,7 @@ const CheckOut = () => {
           <h1>¡Gracias por tu compra!</h1>
           <p>Tu ID de pedido es: <span className="Chekout-id">{idDelPedido}</span></p>
         </div>
-        <Link to="/productos">Seguir comprando</Link>
+        <Link to="/item">Seguir comprando</Link>
       </article>
       </div>
       </>
