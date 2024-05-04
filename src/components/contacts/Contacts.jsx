@@ -1,5 +1,6 @@
 import Somos from "../home/Somos";
-import Prueba from "./Formulary";
+import Formulary from "./Formulary";
+
 
 
 
@@ -8,7 +9,7 @@ const Contacts = () => {
     <>
       <h1>Contactanos!</h1>
       <Somos />
-      <Prueba />
+      <Formulary />
     </>
   )
 }
