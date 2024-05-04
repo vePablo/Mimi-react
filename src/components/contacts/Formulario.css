@@ -7,10 +7,13 @@
   }
   
   .Formulario {
-    background-color: rgba(255, 255, 255, 0.8); 
-    padding: 20px;
+    flex-wrap: wrap;
+    display: flex;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+    color: #1c0d02;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-content: flex-start;
   }
   
   .img-fluid {
@@ -21,6 +24,9 @@
   }
   .bg{
     max-width: 500px;
+    max-height: 500px;
+    width: 100%;
+    object-fit: cover;
   }
   
   @media (min-width: 768px) {
